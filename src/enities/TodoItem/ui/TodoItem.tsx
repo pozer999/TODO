@@ -4,7 +4,6 @@ import { AppDispatch } from "app/store";
 import { InputPanelActions } from "features/InputPanel/InputPanelSlice";
 import { useCallback } from "react";
 import { useDispatch } from "react-redux";
-
 interface ITodoItem {
     item: any;
 }

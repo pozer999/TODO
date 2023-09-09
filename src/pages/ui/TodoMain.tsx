@@ -6,7 +6,6 @@ const TodoMain = () => {
     return (
         <Row
             justify="center"
-            align="middle"
             className={cls.wrapperMain}
             style={{
                 position: "absolute",
