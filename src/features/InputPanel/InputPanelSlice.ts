@@ -4,6 +4,7 @@ import type { PayloadAction } from "@reduxjs/toolkit";
 export interface TodoItem {
     id: string;
     title: string;
+    checked: boolean;
 }
 
 export interface InputPanelState {
@@ -20,16 +21,31 @@ export const InputPanelSlice = createSlice({
     initialState,
     reducers: {
         changeInputValue(state, action: PayloadAction<TodoItem>) {
-            state.inputValue = action.payload.title;
             state.todoItems = [
                 ...state.todoItems,
-                { id: action.payload.id, title: action.payload.title },
+                {
+                    id: action.payload.id,
+                    title: action.payload.title,
+                    checked: action.payload.checked,
+                },
             ];
+            state.inputValue = "";
         },
         deletedItem(state, action: PayloadAction<any>) {
             state.todoItems = state.todoItems.filter(
                 (item) => item.id !== action.payload
             );
+        },
+        checkedItem(state, action: PayloadAction<any>) {
+            state.todoItems = state.todoItems.map((item) => {
+                if (item.id === action.payload) {
+                    return {
+                        ...item,
+                        checked: !item.checked,
+                    };
+                }
+                return item;
+            });
         },
     },
 });

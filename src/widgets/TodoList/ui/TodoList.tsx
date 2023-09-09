@@ -15,17 +15,11 @@ const TodoList = () => {
 
     return (
         <TransitionGroup>
-            <Space direction="vertical" style={{ width: "100%" }}>
-                {todoItems.map((item) => (
-                    <CSSTransition
-                        key={item.id}
-                        timeout={500}
-                        classNames="item"
-                    >
-                        <TodoItem item={item} />
-                    </CSSTransition>
-                ))}
-            </Space>
+            {todoItems.map((item) => (
+                <CSSTransition key={item.id} timeout={500} classNames="item">
+                    <TodoItem item={item} />
+                </CSSTransition>
+            ))}
         </TransitionGroup>
     );
 };

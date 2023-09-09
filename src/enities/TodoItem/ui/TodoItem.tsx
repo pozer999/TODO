@@ -17,15 +17,21 @@ const TodoItem = ({ item }: ITodoItem) => {
         },
         [dispath]
     );
+    const handleCheckedItem = useCallback((item: number) => {
+        dispath(InputPanelActions.checkedItem(item));
+    }, [dispath]);
     return (
-        <div>
+        <div style={{marginTop: 10}}>
             <Alert
-                type="info"
+                type = {item.checked ? "error" : "info"}  
                 message={
                     <Row justify="space-between">
                         <Space>
-                            <Checkbox />
-                            {item.title}
+                            <Checkbox
+                                checked={item.checked}
+                                onClick={() => handleCheckedItem(item.id)}
+                            />
+                            <div style={{textDecoration: item.checked ? "line-through" : "none", fontSize: 20}}>{item.title}</div>
                         </Space>
                         <Button
                             type="text"
