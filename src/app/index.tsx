@@ -8,7 +8,7 @@ function App() {
     return (
         <ConfigProvider
             theme={{
-                algorithm: theme.darkAlgorithm,
+                algorithm: theme.defaultAlgorithm,
             }}
         >
             <div className="App" style={{zIndex: 2, position: "relative"}}>

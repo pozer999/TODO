@@ -16,7 +16,6 @@ const TodoNavbar = () => {
             dispatch(
                 InputPanelActions.changeInputValue({ id, title, checked })
             );
-            title = "";
         } else {
             wrapperMessage("Пожалуйста, введите название задачи");
         }
@@ -28,6 +27,7 @@ const TodoNavbar = () => {
                 <h1>Todo</h1>
             </div>
             <Search
+            style={{border: "2px solid black", borderRadius: "10px"}}
                 size="large"
                 placeholder="Добавить задачу..."
                 onSearch={onSearch}
