@@ -16,13 +16,13 @@
     text-transform: uppercase;
     font-weight: 900;
 }
-.nav_wrapper{
-    width: 100%;
+.nav_wrapper {
+    width: 150%;
 }
-.nav_form{
+.nav_form {
     display: flex;
 }
-.nav_btn{
+.nav_btn {
     margin-left: 4px;
 }
 
@@ -32,10 +32,10 @@
         background-position: left top;
     }
     25% {
-        background-position: right ;
+        background-position: right;
     }
     50% {
-        background-position: left ;
+        background-position: left;
     }
     75% {
         background-position: right top;

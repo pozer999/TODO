@@ -2,9 +2,9 @@ import { Button, Col, Form, Input, Row } from "antd";
 import { useSelector } from "react-redux";
 import { wrapperMessage } from "shared/helpers/messages/useMessage";
 import { useAppDispatch } from "shared/hooks/useAppDispatch";
-import { InputPanelActions } from "store/InputPanel/InputPanelSlice";
 import { getInputValue } from "../model/TodoNavbar";
 import "./TodoNavbar.scss";
+import { TodoSliceActions } from "store/Todo/TodoSlice";
 
 const TodoNavbar = () => {
     const dispatch = useAppDispatch();
@@ -15,14 +15,14 @@ const TodoNavbar = () => {
         if (title.length > 0) {
             let id = Date.now();
             let checked = false;
-            dispatch(InputPanelActions.addTask({ id, title, checked }));
+            dispatch(TodoSliceActions.addTask({ id, title, checked }));
             document.getElementsByTagName("input")[0].focus();
         } else {
             wrapperMessage("Пожалуйста, введите название задачи");
         }
     };
     const changeInputValue = (title: string) => {
-        dispatch(InputPanelActions.changeInputValue(title));
+        dispatch(TodoSliceActions.changeInputValue(title));
     };
 
     return (

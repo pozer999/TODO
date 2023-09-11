@@ -4,7 +4,7 @@ import { CSSTransition, TransitionGroup } from "react-transition-group";
 import "./TodoList.scss";
 import TodoItem from "enities/TodoItem/ui/TodoItem";
 import { getTodoTasks } from "../model/TodoListSelectors";
-import { ITodoTask } from "store/InputPanel/InputPanelSlice";
+import { ITodoTask } from "store/Todo/TodoSlice";
 
 const TodoList = () => {
     const todoTasks = useSelector(getTodoTasks);
@@ -15,7 +15,7 @@ const TodoList = () => {
 
     return (
         <TransitionGroup>
-            {todoTasks.map((task: ITodoTask) => (                
+            {todoTasks.map((task: ITodoTask) => (
                 <CSSTransition key={task.id} timeout={500} classNames="item">
                     <TodoItem taskProps={task} />
                 </CSSTransition>

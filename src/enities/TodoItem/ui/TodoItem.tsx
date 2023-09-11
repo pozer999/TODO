@@ -2,19 +2,20 @@ import { CloseOutlined } from "@ant-design/icons";
 import { Alert, Button, Checkbox, Row, Space } from "antd";
 import { useCallback } from "react";
 import { useAppDispatch } from "shared/hooks/useAppDispatch";
-import { InputPanelActions } from "store/InputPanel/InputPanelSlice";
+import { TodoSliceActions } from "store/Todo/TodoSlice";
+import "./TodoItem.scss";
 
 const TodoItem = ({ taskProps }: any) => {
     const dispath = useAppDispatch();
     const handleRemoveTask = useCallback(
         (id: number) => {
-            dispath(InputPanelActions.removeTask(id));
+            dispath(TodoSliceActions.removeTask(id));
         },
         [dispath]
     );
     const handleCheckedTask = useCallback(
         (id: number) => {
-            dispath(InputPanelActions.checkedTask(id));
+            dispath(TodoSliceActions.checkedTask(id));
         },
         [dispath]
     );
@@ -35,7 +36,7 @@ const TodoItem = ({ taskProps }: any) => {
                                     textDecoration: taskProps.checked
                                         ? "line-through"
                                         : "none",
-                                    fontSize: 20,
+                                    fontSize: 16,
                                 }}
                             >
                                 {taskProps.title}

@@ -1,9 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { InputPanelReducer } from "store/InputPanel/InputPanelSlice";
+import { TodoSliceReducer } from "store/Todo/TodoSlice";
 
 export const store = configureStore({
     reducer: {
-        inputPanel: InputPanelReducer,
+        todoSlice: TodoSliceReducer,
     },
 });
 

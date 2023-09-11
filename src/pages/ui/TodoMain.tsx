@@ -4,11 +4,8 @@ import TodoList from "widgets/TodoList/ui/TodoList";
 import cls from "./TodoMain.module.scss";
 const TodoMain = () => {
     return (
-        <Row
-            justify="center"
-            className={cls.wrapperMain}
-        >
-            <Col span={12}>
+        <Row justify="center" className={cls.wrapperMain}>
+            <Col xs={20} sm={18} md={14} lg={12}>
                 <Space direction="vertical" style={{ width: "100%" }}>
                     <TodoNavbar />
                     <TodoList />
