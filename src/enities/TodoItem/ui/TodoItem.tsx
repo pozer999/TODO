@@ -1,50 +1,50 @@
 import { CloseOutlined } from "@ant-design/icons";
 import { Alert, Button, Checkbox, Row, Space } from "antd";
-import { AppDispatch } from "app/store";
 import { useCallback } from "react";
-import { useDispatch } from "react-redux";
-import { ITodoItem, InputPanelActions } from "store/InputPanel/InputPanelSlice";
+import { useAppDispatch } from "shared/hooks/useAppDispatch";
+import { TodoSliceActions } from "store/Todo/TodoSlice";
+import "./TodoItem.scss";
 
-const TodoItem = ({itemProps}: any) => {
-    const dispath = useDispatch<AppDispatch>();
-    const handleDeletedItem = useCallback(
-        (item: number) => {
-            dispath(InputPanelActions.removeTask(item));
+const TodoItem = ({ taskProps }: any) => {
+    const dispath = useAppDispatch();
+    const handleRemoveTask = useCallback(
+        (id: number) => {
+            dispath(TodoSliceActions.removeTask(id));
         },
         [dispath]
     );
-    const handleCheckedItem = useCallback(
-        (item: number) => {
-            dispath(InputPanelActions.checkedTask(item));
+    const handleCheckedTask = useCallback(
+        (id: number) => {
+            dispath(TodoSliceActions.checkedTask(id));
         },
         [dispath]
     );
 
     return (
-        <div style={{ marginTop: 10 }}>
+        <div className="wrapper_todoItem">
             <Alert
-                type={itemProps.checked ? "error" : "info"}
+                type={taskProps.checked ? "error" : "info"}
                 message={
                     <Row justify="space-between">
                         <Space>
                             <Checkbox
-                                checked={itemProps.checked}
-                                onClick={() => handleCheckedItem(itemProps.id)}
+                                checked={taskProps.checked}
+                                onClick={() => handleCheckedTask(taskProps.id)}
                             />
                             <div
                                 style={{
-                                    textDecoration: itemProps.checked
+                                    textDecoration: taskProps.checked
                                         ? "line-through"
                                         : "none",
-                                    fontSize: 20,
+                                    fontSize: 16,
                                 }}
                             >
-                                {itemProps.title}
+                                {taskProps.title}
                             </div>
                         </Space>
                         <Button
                             type="text"
-                            onClick={() => handleDeletedItem(itemProps.id)}
+                            onClick={() => handleRemoveTask(taskProps.id)}
                         >
                             <CloseOutlined />
                         </Button>

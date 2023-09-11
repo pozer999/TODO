@@ -1,14 +1,13 @@
 import { Button, Col, Form, Input, Row } from "antd";
-import { AppDispatch } from "app/store";
-import { nanoid } from "nanoid";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { wrapperMessage } from "shared/helpers/messages/useMessage";
-import { InputPanelActions } from "store/InputPanel/InputPanelSlice";
+import { useAppDispatch } from "shared/hooks/useAppDispatch";
 import { getInputValue } from "../model/TodoNavbar";
 import "./TodoNavbar.scss";
+import { TodoSliceActions } from "store/Todo/TodoSlice";
 
 const TodoNavbar = () => {
-    const dispatch = useDispatch<AppDispatch>();
+    const dispatch = useAppDispatch();
 
     const title = useSelector(getInputValue);
 
@@ -16,26 +15,25 @@ const TodoNavbar = () => {
         if (title.length > 0) {
             let id = Date.now();
             let checked = false;
-            dispatch(InputPanelActions.addTask({ id, title, checked }));
+            dispatch(TodoSliceActions.addTask({ id, title, checked }));
             document.getElementsByTagName("input")[0].focus();
         } else {
             wrapperMessage("Пожалуйста, введите название задачи");
         }
     };
     const changeInputValue = (title: string) => {
-        dispatch(InputPanelActions.changeInputValue(title));
+        dispatch(TodoSliceActions.changeInputValue(title));
     };
 
     return (
         <>
-            <div className="text-container">
+            <div className="nav_text_container">
                 <h1>Todo</h1>
             </div>
             <Row align="middle" justify="space-between">
-                <Col style={{ width: "100%" }}>
-                    <Form style={{ display: "flex" }}>
+                <Col className="nav_wrapper">
+                    <Form className="nav_form">
                         <Input
-                            id="inp"
                             size="large"
                             placeholder="Добавить задачу..."
                             value={title}
@@ -46,7 +44,7 @@ const TodoNavbar = () => {
                             type="primary"
                             size="large"
                             onClick={() => addItem(title)}
-                            style={{ marginLeft: 4 }}
+                            className="nav_btn"
                         >
                             Добавить
                         </Button>

@@ -7,6 +7,11 @@
     }
 }
 
+.App{
+    position: relative;
+    z-index: 2;
+}
+
 .scroll-bg {
     height: 80%;
     width: 100vw;

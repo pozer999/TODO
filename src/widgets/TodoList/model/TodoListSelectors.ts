@@ -1,3 +1,3 @@
 import { RootState } from "app/store";
 
-export const getTodoItems = (state: RootState) => state.inputPanel.todoItems;
+export const getTodoTasks = (state: RootState) => state.todoSlice.todoTasks;

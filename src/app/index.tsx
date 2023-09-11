@@ -1,7 +1,6 @@
 import "animate.css/animate.min.css";
-import { ConfigProvider, Watermark, theme } from "antd";
+import { ConfigProvider, theme } from "antd";
 import TodoMain from "pages/ui/TodoMain";
-import { useEffect } from "react";
 import "./style/index.scss";
 
 function App() {
@@ -11,10 +10,10 @@ function App() {
                 algorithm: theme.darkAlgorithm,
             }}
         >
-            <div className="App" style={{zIndex: 2, position: "relative"}}>
+            <div className="App">
                 <TodoMain />
             </div>
-            <div className="scroll-bg"></div>
+            <div className="scroll-bg" />
         </ConfigProvider>
     );
 }

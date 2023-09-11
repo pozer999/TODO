@@ -1,23 +1,23 @@
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
-import { getTodoItems } from "../model/TodoListSelectors";
 import "./TodoList.scss";
 import TodoItem from "enities/TodoItem/ui/TodoItem";
-import { ITodoItem } from "store/InputPanel/InputPanelSlice";
+import { getTodoTasks } from "../model/TodoListSelectors";
+import { ITodoTask } from "store/Todo/TodoSlice";
 
 const TodoList = () => {
-    const todoItems = useSelector(getTodoItems);
+    const todoTasks = useSelector(getTodoTasks);
 
     useEffect(() => {
-        console.log(todoItems);
-    }, [todoItems]);
+        console.log(todoTasks);
+    }, [todoTasks]);
 
     return (
         <TransitionGroup>
-            {todoItems.map((item: ITodoItem) => (                
-                <CSSTransition key={item.id} timeout={500} classNames="item">
-                    <TodoItem itemProps={item} />
+            {todoTasks.map((task: ITodoTask) => (
+                <CSSTransition key={task.id} timeout={500} classNames="item">
+                    <TodoItem taskProps={task} />
                 </CSSTransition>
             ))}
         </TransitionGroup>
