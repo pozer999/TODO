@@ -1,35 +1,50 @@
 import { CloseOutlined } from "@ant-design/icons";
 import { Alert, Button, Checkbox, Row, Space } from "antd";
 import { AppDispatch } from "app/store";
-import { InputPanelActions } from "features/InputPanel/InputPanelSlice";
 import { useCallback } from "react";
 import { useDispatch } from "react-redux";
-interface ITodoItem {
-    item: any;
-}
+import { ITodoItem, InputPanelActions } from "store/InputPanel/InputPanelSlice";
 
-const TodoItem = ({ item }: ITodoItem) => {
+const TodoItem = ({itemProps}: any) => {
     const dispath = useDispatch<AppDispatch>();
     const handleDeletedItem = useCallback(
-        (item: any) => {
-            dispath(InputPanelActions.deletedItem(item));
-            console.log("item", item);
+        (item: number) => {
+            dispath(InputPanelActions.removeTask(item));
         },
         [dispath]
     );
+    const handleCheckedItem = useCallback(
+        (item: number) => {
+            dispath(InputPanelActions.checkedTask(item));
+        },
+        [dispath]
+    );
+
     return (
-        <div>
+        <div style={{ marginTop: 10 }}>
             <Alert
-                type="info"
+                type={itemProps.checked ? "error" : "info"}
                 message={
                     <Row justify="space-between">
                         <Space>
-                            <Checkbox />
-                            {item.title}
+                            <Checkbox
+                                checked={itemProps.checked}
+                                onClick={() => handleCheckedItem(itemProps.id)}
+                            />
+                            <div
+                                style={{
+                                    textDecoration: itemProps.checked
+                                        ? "line-through"
+                                        : "none",
+                                    fontSize: 20,
+                                }}
+                            >
+                                {itemProps.title}
+                            </div>
                         </Space>
                         <Button
                             type="text"
-                            onClick={() => handleDeletedItem(item.id)}
+                            onClick={() => handleDeletedItem(itemProps.id)}
                         >
                             <CloseOutlined />
                         </Button>

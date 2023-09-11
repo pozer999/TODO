@@ -1,34 +1,58 @@
-import Search, { SearchProps } from "antd/es/input/Search";
+import { Button, Col, Form, Input, Row } from "antd";
 import { AppDispatch } from "app/store";
-import { InputPanelActions } from "features/InputPanel/InputPanelSlice";
 import { nanoid } from "nanoid";
-import './TodoNavbar.scss';
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { wrapperMessage } from "shared/helpers/messages/useMessage";
+import { InputPanelActions } from "store/InputPanel/InputPanelSlice";
+import { getInputValue } from "../model/TodoNavbar";
+import "./TodoNavbar.scss";
 
 const TodoNavbar = () => {
     const dispatch = useDispatch<AppDispatch>();
-    const onSearch: SearchProps["onSearch"] = (title, _e, info) => {
+
+    const title = useSelector(getInputValue);
+
+    const addItem = (title: string) => {
         if (title.length > 0) {
-            let id = nanoid();
-            dispatch(InputPanelActions.changeInputValue({ id, title }));
-            console.log(info?.source, title);
+            let id = Date.now();
+            let checked = false;
+            dispatch(InputPanelActions.addTask({ id, title, checked }));
+            document.getElementsByTagName("input")[0].focus();
         } else {
             wrapperMessage("Пожалуйста, введите название задачи");
         }
     };
+    const changeInputValue = (title: string) => {
+        dispatch(InputPanelActions.changeInputValue(title));
+    };
 
     return (
         <>
-        <div className="text-container">
-        <h1>Todo</h1>
-        </div>
-            <Search
-            size="large"
-                placeholder="Добавить задачу..."
-                onSearch={onSearch}
-                enterButton
-            />
+            <div className="text-container">
+                <h1>Todo</h1>
+            </div>
+            <Row align="middle" justify="space-between">
+                <Col style={{ width: "100%" }}>
+                    <Form style={{ display: "flex" }}>
+                        <Input
+                            id="inp"
+                            size="large"
+                            placeholder="Добавить задачу..."
+                            value={title}
+                            onChange={(e) => changeInputValue(e.target.value)}
+                        />
+                        <Button
+                            htmlType="submit"
+                            type="primary"
+                            size="large"
+                            onClick={() => addItem(title)}
+                            style={{ marginLeft: 4 }}
+                        >
+                            Добавить
+                        </Button>
+                    </Form>
+                </Col>
+            </Row>
         </>
     );
 };

@@ -1,19 +1,29 @@
 @keyframes scrollBg {
-  from {
-    transform: translateY(0px);
-  }
-  to {
-    transform: translateY(-330px);
-  }
+    from {
+        transform: translateY(0px);
+    }
+    to {
+        transform: translateY(-330px);
+    }
 }
 
 .scroll-bg {
-  height: 100vh;
-  width: 100vw;
-  position: fixed;
-  padding-bottom: 330px;
-  background-color: white;
-  background-image: url('../../image/Checklist-pana.png');
-  background-size: cover;
-  animation: scrollBg 35s linear forwards infinite alternate;
+    height: 80%;
+    width: 100vw;
+    position: fixed;
+    padding-bottom: 330px;
+    background-color: white;
+    background-image: url("../../image/Checklist-pana.png");
+    background-size: 100% auto;
+    animation: scrollBg 35s linear forwards infinite alternate;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+@media screen and (max-width: 893px) {
+    .scroll-bg {
+        height: 100%;
+        background-image: url("../../image/cats.png");
+        background-repeat: repeat;
+    }
 }

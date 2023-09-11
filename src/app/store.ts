@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit'
-import { InputPanelReducer } from 'features/InputPanel/InputPanelSlice';
+import { InputPanelReducer } from 'store/InputPanel/InputPanelSlice';
 
 export const store = configureStore({
   reducer: {
