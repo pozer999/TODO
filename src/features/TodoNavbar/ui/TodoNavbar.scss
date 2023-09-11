@@ -1,10 +1,10 @@
-.text-container {
+.nav_text_container {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.text-container h1 {
+.nav_text_container h1 {
     margin: 30px;
     font-size: 50px;
     color: rgba(225, 225, 225, 0.01);
@@ -15,6 +15,15 @@
     text-align: center;
     text-transform: uppercase;
     font-weight: 900;
+}
+.nav_wrapper{
+    width: 100%;
+}
+.nav_form{
+    display: flex;
+}
+.nav_btn{
+    margin-left: 4px;
 }
 
 @keyframes animate {

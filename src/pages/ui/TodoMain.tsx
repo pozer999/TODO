@@ -7,13 +7,6 @@ const TodoMain = () => {
         <Row
             justify="center"
             className={cls.wrapperMain}
-            style={{
-                position: "absolute",
-                top: 0,
-                bottom: 0,
-                right: 0,
-                left: 0,
-            }}
         >
             <Col span={12}>
                 <Space direction="vertical" style={{ width: "100%" }}>
