@@ -1,10 +1,10 @@
-import { Space } from "antd";
-import TodoItem from "enities/TodoItem/ui/TodoItem";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
 import { getTodoItems } from "../model/TodoListSelectors";
 import "./TodoList.scss";
-import { CSSTransition, TransitionGroup } from "react-transition-group";
+import TodoItem from "enities/TodoItem/ui/TodoItem";
+import { ITodoItem } from "store/InputPanel/InputPanelSlice";
 
 const TodoList = () => {
     const todoItems = useSelector(getTodoItems);
@@ -15,17 +15,11 @@ const TodoList = () => {
 
     return (
         <TransitionGroup>
-            <Space direction="vertical" style={{ width: "100%" }}>
-                {todoItems.map((item) => (
-                    <CSSTransition
-                        key={item.id}
-                        timeout={500}
-                        classNames="item"
-                    >
-                        <TodoItem item={item} />
-                    </CSSTransition>
-                ))}
-            </Space>
+            {todoItems.map((item: ITodoItem) => (                
+                <CSSTransition key={item.id} timeout={500} classNames="item">
+                    <TodoItem itemProps={item} />
+                </CSSTransition>
+            ))}
         </TransitionGroup>
     );
 };

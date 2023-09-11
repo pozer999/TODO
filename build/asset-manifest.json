@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/TODO/static/css/main.be402fe7.css",
+    "main.js": "/TODO/static/js/main.71bed1f3.js",
+    "static/media/Checklist-pana.png": "/TODO/static/media/Checklist-pana.ff901139ec02ca6df88b.png",
+    "static/media/1679324817_bogatyr-club-p-gradient-cherno-belii-foni-instagram-72.png": "/TODO/static/media/1679324817_bogatyr-club-p-gradient-cherno-belii-foni-instagram-72.d86d9b86877adb996621.png",
+    "index.html": "/TODO/index.html",
+    "main.be402fe7.css.map": "/TODO/static/css/main.be402fe7.css.map",
+    "main.71bed1f3.js.map": "/TODO/static/js/main.71bed1f3.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.be402fe7.css",
+    "static/js/main.71bed1f3.js"
+  ]
+}
